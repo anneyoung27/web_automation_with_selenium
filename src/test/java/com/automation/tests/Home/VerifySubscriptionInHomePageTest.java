@@ -25,7 +25,7 @@ public class VerifySubscriptionInHomePageTest {
         String actualLabel = homePage.verifySubscriptionIsVisible();
         Assert.assertEquals(actualLabel, "SUBSCRIPTION");
 
-        homePage.scrollDown();
+        homePage.scrollDownToFooter();
 
         String registeredEmail = setUp.getProperty("registeredEmail");
         homePage.enterEmail(registeredEmail);

@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class VerifyAllProductsAndProductDetailTest extends TestBase {
     ProductsPage productsPage;
-    static int PRODUCT_LIST_ORDER;
+    static int PRODUCT_LIST_ORDER; // to generate random choice for product
 
     @BeforeMethod
     public void testSetUp(){

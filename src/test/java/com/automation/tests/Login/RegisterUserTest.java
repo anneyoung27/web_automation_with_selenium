@@ -57,6 +57,8 @@ public class RegisterUserTest {
         Assert.assertEquals(actualLoggedName, GENERATED_NAME);
 
         loginPage.clickDeleteAccountButton();
+
+
     }
 
     @AfterMethod

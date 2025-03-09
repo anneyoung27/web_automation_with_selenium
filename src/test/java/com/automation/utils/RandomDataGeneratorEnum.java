@@ -19,5 +19,8 @@ public enum RandomDataGeneratorEnum {
     ZIPCODE,
     MOBILE_NUMBER,
     SUBJECT,
-    MESSAGE
+    MESSAGE,
+    CARD_NUMBER,
+    CVC,
+    CATEGORIES
 }

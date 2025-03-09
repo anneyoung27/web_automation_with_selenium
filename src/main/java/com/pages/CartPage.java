@@ -1,6 +1,5 @@
 package com.pages;
 
-import com.aventstack.extentreports.util.Assert;
 import com.base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,6 +12,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class CartPage extends TestBase {
     WebDriver driver;
@@ -40,6 +40,32 @@ public class CartPage extends TestBase {
     By successAlertMessage = By.xpath("//div[@class='alert-success alert']");
 
     By cartTableData = By.xpath("//table/tbody/tr");
+
+    By verifyShoppingCartPage = By.cssSelector(".active");
+
+    @FindBy(xpath = "//a[normalize-space(text())='Proceed To Checkout']")
+    static WebElement proceedToCheckout;
+
+    By verifyCheckOutPopUp = By.xpath("//h4[@class='modal-title w-100']");
+
+    @FindBy(xpath = "//u[normalize-space(text())='Register / Login']")
+    static WebElement registerOrLogin;
+
+    By verifyAddressDetail = By.xpath("(//h2[@class='heading'])[1]");
+
+    By verifyReviewYourOrder = By.xpath("(//h2[@class='heading'])[2]");
+
+    @FindBy(xpath = "//textarea[@class='form-control']")
+    static WebElement typeCommentBeforeCheckout;
+
+    @FindBy(css = ".btn.btn-default.check_out")
+    static WebElement placeOrderButton;
+
+    @FindBy(css = ".cart_quantity_delete")
+    static WebElement deleteProductButton;
+
+    @FindBy(xpath = "//table[@id='cart_info_table']//tbody/tr")
+    static WebElement cartProductRow;
 
     // VERIFY SUBSCRIPTION TEST STEP
     public void goToCartPage(){
@@ -75,29 +101,41 @@ public class CartPage extends TestBase {
 
     // VERIFY ADDED PRODUCT IN CART
     public void verifyAddedProductInCartIsVisible(String[] addedProduct) {
-        Set<String> foundProduct = new HashSet<>(); // Avoid duplicates
+        Set<String> foundProducts = new HashSet<>();
 
         List<WebElement> cartTable = findElements(driver, cartTableData);
 
-        for (WebElement data : cartTable) {
-            List<WebElement> dataPerRows = data.findElements(By.tagName("td")); // Get row data
+        if (cartTable.isEmpty()) {
+            System.out.println("❌ Cart is empty! No products found.");
+            return;
+        }
 
-            String columnDescription = dataPerRows.get(1).getText().trim(); // Get description column
+        System.out.println("🔍 Checking products in the cart...");
 
-            for (String product : addedProduct) {
-                if (columnDescription.contains(product)) { // get product name not product category
-                    foundProduct.add(product);
+        for (WebElement row : cartTable) {
+            List<WebElement> rowData = row.findElements(By.tagName("td"));
+
+            if (rowData.size() > 1) {
+                String productDescription = rowData.get(1).getText().trim();
+                for (String product : addedProduct) {
+                    if (productDescription.contains(product)) {
+                        foundProducts.add(product);
+                    }
                 }
             }
         }
 
-        // Ensure all added products are in the cart
-        if (foundProduct.containsAll(Arrays.asList(addedProduct))) {
-            System.out.println("✅ All added products are visible in the Cart");
+        List<String> missingProducts = Arrays.stream(addedProduct)
+                .filter(p -> !foundProducts.contains(p))
+                .toList();
+
+        if (missingProducts.isEmpty()) {
+            System.out.println("✅ All added products are visible in the Cart: " + foundProducts);
         } else {
-            System.out.println("❌ Some products are missing in the Cart");
+            System.out.println("❌ Some products are missing in the Cart: " + missingProducts);
         }
     }
+
 
     // VERIFY PRICES, QUANTITY, and TOTAL PRICE ADDED PRODUCT
     // (PRICES * QUANTITY = TOTAL)
@@ -131,4 +169,61 @@ public class CartPage extends TestBase {
 
         return Integer.parseInt(columnQuantity);
     }
+
+    // PLACE ORDER REGISTER WHILE CHECKOUT
+    public String verifyCartPage(){
+        WebElement getVerifyMessageText = visibilityOfElementLocated(verifyShoppingCartPage);
+
+        assert getVerifyMessageText != null;
+        return getVerifyMessageText.getText();
+    }
+
+    public void proceedToCheckout(){
+        click(proceedToCheckout);
+    }
+
+    public String verifyCheckoutPopUpIsVisible(){
+        WebElement getVerifyMessageText = visibilityOfElementLocated(verifyCheckOutPopUp);
+
+        assert getVerifyMessageText != null;
+        return getVerifyMessageText.getText();
+    }
+
+    public void registerOrLogin(){
+        click(registerOrLogin);
+    }
+
+    public String verifyAddressDetailIsVisible(){
+        WebElement getVerifyMessageText = visibilityOfElementLocated(verifyAddressDetail);
+
+        assert getVerifyMessageText != null;
+        return getVerifyMessageText.getText();
+    }
+
+    public String verifyReviewYourOrderIsVisible(){
+        WebElement getVerifyMessageText = visibilityOfElementLocated(verifyReviewYourOrder);
+
+        assert getVerifyMessageText != null;
+        return getVerifyMessageText.getText();
+    }
+
+    public void setCommentBeforeCheckout(String comment){
+        type(typeCommentBeforeCheckout, comment);
+    }
+
+    public void placeOrderButton(){
+        click(placeOrderButton);
+    }
+
+    // REMOVE PRODUCT FROM CART
+    public void clickRemoveProductFromCart(){
+        click(deleteProductButton);
+    }
+
+    // ADD ITEM FROM RECOMMENDED ITEM
+    public boolean verifyIfAddedItemFromRecommendedItemsInCart(){
+        return cartProductRow.isDisplayed();
+    }
+
+
 }

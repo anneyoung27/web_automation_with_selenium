@@ -17,6 +17,7 @@ public class SearchProductTest {
         setUp();
 
         productsPage = new ProductsPage(driver);
+
         Assert.assertTrue(productsPage.verifyLandingPage(), "Home page is visible");
 
         productsPage.goToProductsPage();

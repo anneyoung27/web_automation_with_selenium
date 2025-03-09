@@ -17,7 +17,7 @@ public class VerifyProductQuantityInCartTest {
     CartPage cartPage;
     ProductsPage productsPage;
 
-    static int PRODUCT_LIST_ORDER;
+    static int PRODUCT_LIST_ORDER; // to generate random choice for product
 
     @BeforeMethod
     public void testSetUp(){

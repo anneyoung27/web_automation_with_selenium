@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 
 public class TestBase extends DriverManager{
 
@@ -78,11 +79,8 @@ public class TestBase extends DriverManager{
         }
     }
 
-    public static void selectRadioButton(List<WebElement> radioLocator, String value) {
-        radioLocator.stream()
-                .filter(radio -> value.equalsIgnoreCase(radio.getAttribute("value")) && !radio.isSelected())
-                .findFirst()
-                .ifPresent(WebElement::click);
+    public static void selectRadioButton(WebElement radioButton) {
+        click(radioButton);
     }
 
     public static void selectDropdown(WebElement dropDownLocator, String value) {
@@ -119,5 +117,15 @@ public class TestBase extends DriverManager{
 
     public static WebElement findElement(WebDriver driver, By locator){
         return driver.findElement(locator);
+    }
+
+    public void waitForPageToLoad() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        int timeout = 10;
+        for (int i = 0; i < timeout; i++) {
+            String readyState = Objects.requireNonNull(js.executeScript("return document.readyState")).toString();
+            if (readyState.equals("complete")) break;
+            try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); }
+        }
     }
 }

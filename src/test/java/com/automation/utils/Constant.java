@@ -20,4 +20,7 @@ public class Constant {
     public static String MOBILE_NUMBER = RandomDataGeneratorUtils.getRandomData(RandomDataGeneratorEnum.MOBILE_NUMBER);
     public static String SUBJECT = RandomDataGeneratorUtils.getRandomData(RandomDataGeneratorEnum.SUBJECT);
     public static String MESSAGES = RandomDataGeneratorUtils.getRandomData(RandomDataGeneratorEnum.MESSAGE);
+    public static String CREDIT_NUMBER = RandomDataGeneratorUtils.getRandomData(RandomDataGeneratorEnum.CARD_NUMBER);
+    public static String CVC_NUMBER = RandomDataGeneratorUtils.getRandomData(RandomDataGeneratorEnum.CVC);
+    public static String CATEGORY = RandomDataGeneratorUtils.getRandomData(RandomDataGeneratorEnum.CATEGORIES);
 }

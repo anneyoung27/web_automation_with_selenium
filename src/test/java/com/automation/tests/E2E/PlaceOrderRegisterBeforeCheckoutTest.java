@@ -12,14 +12,12 @@ import java.util.Random;
 
 import static com.base.DriverManager.*;
 
-
-public class PlaceOrderRegisterWhileCheckoutTest {
+public class PlaceOrderRegisterBeforeCheckoutTest {
     LoginPage loginPage;
     HomePage homePage;
     ProductsPage productsPage;
     CartPage cartPage;
     PaymentPage paymentPage;
-
 
     static int PRODUCT_LIST_ORDER_1; // to generate random choice for product
     private static final String GENERATED_NAME = Constant.NAME; // to generate name
@@ -42,9 +40,37 @@ public class PlaceOrderRegisterWhileCheckoutTest {
         PRODUCT_LIST_ORDER_1 = random.nextInt(totalProducts) + 1;
     }
 
-    @Test(description = "Test Case 14: Place Order Register while Checkout")
-    public void placeOrderRegisterWhileCheckoutTest(){
+    @Test(description = "Test Case 15: Place Order Register before Checkout")
+    public void placeOrderRegisterBeforeCheckoutTest(){
         Assert.assertTrue(homePage.verifyLandingPage(), "Home page is visible");
+
+        loginPage.goToLogIn();
+
+        loginPage.typeUserInformation(GENERATED_NAME, Constant.EMAIL);
+
+        loginPage.clickSignUpButton();
+
+        loginPage.fillAccountInformation(Constant.TITLE,
+                Constant.PASSWORD,
+                Constant.DATE,
+                Constant.MONTH,
+                Constant.YEAR);
+
+        loginPage.selectCheckbox();
+
+        loginPage.fillAddressInformation(Constant.FIRST_NAME, Constant.LAST_NAME, Constant.COMPANY,
+                Constant.ADDRESS, Constant.ADDRESS2, Constant.COUNTRY,
+                Constant.STATE, Constant.CITY, Constant.ZIPCODE, Constant.MOBILE_NUMBER);
+
+        loginPage.createAccountButton();
+
+        String actualAccountWasCreated = loginPage.verifyAccountWasCreatedIsVisible();
+        Assert.assertEquals(actualAccountWasCreated, "ACCOUNT CREATED!");
+
+        loginPage.clickContinueButton();
+
+        String actualLoggedName = loginPage.verifyLoggedInAsUserNameIsVisible(GENERATED_NAME);
+        Assert.assertEquals(actualLoggedName, GENERATED_NAME);
 
         String productName = productsPage.getProductName(PRODUCT_LIST_ORDER_1);
         String addProductByProductIndex = productsPage.getProductIndex(productName);
@@ -57,41 +83,6 @@ public class PlaceOrderRegisterWhileCheckoutTest {
 
         String actualShoppingCart = cartPage.verifyCartPage();
         Assert.assertEquals(actualShoppingCart, "Shopping Cart");
-
-        cartPage.proceedToCheckout();
-
-        String actualCheckoutLabel = cartPage.verifyCheckoutPopUpIsVisible();
-        Assert.assertEquals(actualCheckoutLabel, "Checkout");
-
-        cartPage.registerOrLogin();
-
-        loginPage.typeUserInformation(GENERATED_NAME, Constant.EMAIL);
-
-        loginPage.clickSignUpButton();
-
-        loginPage.fillAccountInformation(Constant.TITLE,
-                                         Constant.PASSWORD,
-                                         Constant.DATE,
-                                         MONTH,
-                                         YEAR);
-
-        loginPage.selectCheckbox();
-
-        loginPage.fillAddressInformation(Constant.FIRST_NAME, Constant.LAST_NAME, Constant.COMPANY,
-                                         Constant.ADDRESS, Constant.ADDRESS2, Constant.COUNTRY,
-                                         Constant.STATE, Constant.CITY, Constant.ZIPCODE, Constant.MOBILE_NUMBER);
-
-        loginPage.createAccountButton();
-
-        String actualAccountWasCreated = loginPage.verifyAccountWasCreatedIsVisible();
-        Assert.assertEquals(actualAccountWasCreated, "ACCOUNT CREATED!");
-
-        loginPage.clickContinueButton();
-
-        String actualLoggedName = loginPage.verifyLoggedInAsUserNameIsVisible(GENERATED_NAME);
-        Assert.assertEquals(actualLoggedName, GENERATED_NAME);
-
-        cartPage.goToCartPage();
 
         cartPage.proceedToCheckout();
 
@@ -140,5 +131,4 @@ public class PlaceOrderRegisterWhileCheckoutTest {
     public void quit(){
         tearDown();
     }
-
 }

@@ -7,8 +7,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import static com.base.DriverManager.*;
@@ -17,8 +15,8 @@ public class AddProductsInCartTest {
     CartPage cartPage;
     ProductsPage productsPage;
 
-    static int PRODUCT_LIST_ORDER_1;
-    static int PRODUCT_LIST_ORDER_2;
+    static int PRODUCT_LIST_ORDER_1; // to generate random choice for product
+    static int PRODUCT_LIST_ORDER_2; // to generate random choice for product
 
     @BeforeMethod
     public void testSetUp(){
@@ -61,7 +59,7 @@ public class AddProductsInCartTest {
 
         productsPage.addToCartButton(addProductByProductIndex2); // add second product
 
-        cartPage.goToCartPage();
+        productsPage.viewCart();
 
         String[] addedProductInCart = new String[] {productName1, productName2};
 

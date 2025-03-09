@@ -12,17 +12,17 @@ import java.util.Random;
 
 import static com.base.DriverManager.*;
 
-
-public class PlaceOrderRegisterWhileCheckoutTest {
+public class PlaceOrderLoginBeforeCheckoutTest {
     LoginPage loginPage;
     HomePage homePage;
     ProductsPage productsPage;
     CartPage cartPage;
     PaymentPage paymentPage;
 
-
     static int PRODUCT_LIST_ORDER_1; // to generate random choice for product
-    private static final String GENERATED_NAME = Constant.NAME; // to generate name
+    private static String USER_NAME;
+    private static String USER_EMAIL;
+    private static String USER_PASSWORD;
     private static final String MONTH = Constant.MONTH; // to generate month for payment credit card
     private static final String YEAR = Constant.YEAR; // to generate month for payment credit card
 
@@ -40,11 +40,24 @@ public class PlaceOrderRegisterWhileCheckoutTest {
         int totalProducts = productsPage.getProductOrderNumber();
 
         PRODUCT_LIST_ORDER_1 = random.nextInt(totalProducts) + 1;
+
+        USER_NAME = setUp.getProperty("registeredName");
+        USER_EMAIL = setUp.getProperty("registeredEmail");
+        USER_PASSWORD = setUp.getProperty("registeredPassword");
     }
 
-    @Test(description = "Test Case 14: Place Order Register while Checkout")
-    public void placeOrderRegisterWhileCheckoutTest(){
+    @Test(description = "Test Case 16: Place Order Login before Checkout")
+    public void placeOrderLoginBeforeCheckoutTest(){
         Assert.assertTrue(homePage.verifyLandingPage(), "Home page is visible");
+
+        loginPage.goToLogIn();
+
+        loginPage.loginAccount(USER_EMAIL, USER_PASSWORD);
+
+        loginPage.clickLoginButton();
+
+        String actualLoggedName = loginPage.verifyLoggedInAsUserNameIsVisible(USER_NAME);
+        Assert.assertEquals(actualLoggedName, USER_NAME);
 
         String productName = productsPage.getProductName(PRODUCT_LIST_ORDER_1);
         String addProductByProductIndex = productsPage.getProductIndex(productName);
@@ -60,41 +73,6 @@ public class PlaceOrderRegisterWhileCheckoutTest {
 
         cartPage.proceedToCheckout();
 
-        String actualCheckoutLabel = cartPage.verifyCheckoutPopUpIsVisible();
-        Assert.assertEquals(actualCheckoutLabel, "Checkout");
-
-        cartPage.registerOrLogin();
-
-        loginPage.typeUserInformation(GENERATED_NAME, Constant.EMAIL);
-
-        loginPage.clickSignUpButton();
-
-        loginPage.fillAccountInformation(Constant.TITLE,
-                                         Constant.PASSWORD,
-                                         Constant.DATE,
-                                         MONTH,
-                                         YEAR);
-
-        loginPage.selectCheckbox();
-
-        loginPage.fillAddressInformation(Constant.FIRST_NAME, Constant.LAST_NAME, Constant.COMPANY,
-                                         Constant.ADDRESS, Constant.ADDRESS2, Constant.COUNTRY,
-                                         Constant.STATE, Constant.CITY, Constant.ZIPCODE, Constant.MOBILE_NUMBER);
-
-        loginPage.createAccountButton();
-
-        String actualAccountWasCreated = loginPage.verifyAccountWasCreatedIsVisible();
-        Assert.assertEquals(actualAccountWasCreated, "ACCOUNT CREATED!");
-
-        loginPage.clickContinueButton();
-
-        String actualLoggedName = loginPage.verifyLoggedInAsUserNameIsVisible(GENERATED_NAME);
-        Assert.assertEquals(actualLoggedName, GENERATED_NAME);
-
-        cartPage.goToCartPage();
-
-        cartPage.proceedToCheckout();
-
         String actualAddressDetail = cartPage.verifyAddressDetailIsVisible();
         Assert.assertEquals(actualAddressDetail, "Address Details");
 
@@ -105,7 +83,7 @@ public class PlaceOrderRegisterWhileCheckoutTest {
 
         cartPage.placeOrderButton();
 
-        paymentPage.setNameOnCard(GENERATED_NAME.toUpperCase());
+        paymentPage.setNameOnCard(USER_NAME.toUpperCase());
 
         paymentPage.setCardNumber(Constant.CREDIT_NUMBER);
 
@@ -140,5 +118,4 @@ public class PlaceOrderRegisterWhileCheckoutTest {
     public void quit(){
         tearDown();
     }
-
 }

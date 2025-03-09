@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
 
 
 public class LoginPage extends TestBase {
@@ -41,8 +40,11 @@ public class LoginPage extends TestBase {
     static WebElement createAccountBtn;
 
     // ACCOUNT INFORMATION
-    @FindBy(xpath = "//input[@name='title']")
-    static List<WebElement> title;
+    @FindBy(id = "id_gender1")
+    static WebElement mrGender; // Mr.
+
+    @FindBy(id = "id_gender2")
+    static WebElement mrsGender; // Mrs.
 
     @FindBy(xpath = "//input[@id='password']")
     static WebElement password;
@@ -97,10 +99,10 @@ public class LoginPage extends TestBase {
     static WebElement accountCreatedLabel;
 
     @FindBy(xpath = "//a[@class='btn btn-primary']")
-    static WebElement continueBtn;
+    static WebElement continueButton;
 
     @FindBy(xpath = "//a[contains(text(),'Delete Account')]")
-    static WebElement deleteBtn;
+    static WebElement deleteButton;
 
     // USER LOGIN
     @FindBy(xpath = "//h2[contains(text(),'Login to your account')]")
@@ -120,6 +122,12 @@ public class LoginPage extends TestBase {
 
     @FindBy(xpath = "//a[contains(text(),'Logout')]")
     static WebElement logoutButton;
+
+    @FindBy(xpath = "//a[normalize-space(text())='Delete Account']")
+    static WebElement deleteAccountButton;
+
+    By verifyAccountDeletedLabel = By.xpath("//b[normalize-space(text())='Account Deleted!']");
+
 
 
     // LOGIN | LOGOUT | REGISTER TEST STEPS
@@ -154,9 +162,9 @@ public class LoginPage extends TestBase {
 
     private void selectGender(String gender) {
         if(gender.equalsIgnoreCase("Mr.")){
-            selectRadioButton(title, gender);
+            selectRadioButton(mrGender);
         }else if(gender.equalsIgnoreCase("Mrs.")){
-            selectRadioButton(title, gender);
+            selectRadioButton(mrsGender);
         }
     }
 
@@ -202,7 +210,7 @@ public class LoginPage extends TestBase {
     }
 
     public void clickContinueButton(){
-        click(continueBtn);
+        click(continueButton);
     }
 
     public String verifyLoggedInAsUserNameIsVisible(String userName){
@@ -214,7 +222,7 @@ public class LoginPage extends TestBase {
     }
 
     public void clickDeleteAccountButton(){
-        click(deleteBtn);
+        click(deleteButton);
     }
 
     public void loginAccount(String userEmailAddress, String password){
@@ -244,6 +252,18 @@ public class LoginPage extends TestBase {
 
     public void clickLogoutButton(){
         click(logoutButton);
+    }
+
+    public void deleteAccountButton(){
+        click(deleteAccountButton);
+    }
+
+    public String verifyAccountDelete(){
+        WebElement element = visibilityOfElementLocated(verifyAccountDeletedLabel);
+
+        assert element != null;
+        return element.getText();
+
     }
 
 }

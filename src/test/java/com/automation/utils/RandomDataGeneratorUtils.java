@@ -10,11 +10,12 @@ public class RandomDataGeneratorUtils {
 
     private static final Faker faker = new Faker();
 
-    private static final List<String> TITLES = Arrays.asList("Mr", "Mrs");
+    private static final List<String> TITLES = Arrays.asList("Mr.", "Mrs.");
     private static final List<String> COUNTRIES = Arrays.asList("India","United States","Canada","Australia","Israel","New Zealand","Singapore");
     private static final List<String> SUBJECTS = Arrays.asList("Product Inquiry", "Technical Support",
                                                                "Billing Issue", "Product Problem",
                                                                "Feedback & Suggestions", "Partnership Request");
+    private static final List<String> CATEGORY = Arrays.asList("WOMEN", "MEN", "KIDS");
 
     public static String getRandomData(RandomDataGeneratorEnum genData) {
         return switch (genData) {
@@ -37,6 +38,9 @@ public class RandomDataGeneratorUtils {
             case MOBILE_NUMBER -> faker.phoneNumber().cellPhone();
             case SUBJECT -> SUBJECTS.get(getRandomNumber(0, SUBJECTS.size()));
             case MESSAGE -> faker.lorem().sentence();
+            case CARD_NUMBER -> faker.finance().creditCard();
+            case CVC -> faker.number().digits(3);
+            case CATEGORIES -> CATEGORY.get(getRandomNumber(0, CATEGORY.size()));
         };
     }
 
