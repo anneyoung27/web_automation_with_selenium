@@ -263,7 +263,6 @@ public class LoginPage extends TestBase {
 
         assert element != null;
         return element.getText();
-
     }
 
 }

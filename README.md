@@ -78,6 +78,9 @@ The UI tests cover the functionality of the website, focusing on key features su
     - Add to cart from Recommended items
 - Contact Us
     - Contact us
+- Checkout
+    - Download Invoice after purchase order
+    - Verify address details in checkout page
 - E2E (End to End)
     - Place order register before checkout
     - Place order register while checkout
