@@ -38,6 +38,9 @@ public class PaymentPage extends TestBase {
     @FindBy(css = ".btn.btn-primary")
     static WebElement continueAfterSuccessOrderButton;
 
+    @FindBy(css = ".btn.btn-default.check_out")
+    static WebElement downloadInvoiceButton;
+
     public void setNameOnCard(String name){
         type(nameOnCard, name);
     }
@@ -71,5 +74,9 @@ public class PaymentPage extends TestBase {
 
     public void clickContinueButton(){
         click(continueAfterSuccessOrderButton);
+    }
+
+    public void clickDownloadInvoice(){
+        click(downloadInvoiceButton);
     }
 }

@@ -63,6 +63,8 @@ The UI tests cover the functionality of the website, focusing on key features su
     - Logout User
 - Home
     - Verify subscription in home page
+    - Verify scroll up using 'Arrow' button and Scroll down functionality
+    - Verify scroll up without 'Arrow' button and Scroll down functionality
 - Product
     - Search product
     - Verify all products and product detail

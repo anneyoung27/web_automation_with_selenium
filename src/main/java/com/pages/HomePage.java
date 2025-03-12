@@ -66,6 +66,11 @@ public class HomePage extends TestBase {
     @FindBy(xpath = "//u[contains(text(),'View Cart')]")
     static WebElement viewCart;
 
+    @FindBy(xpath = "//a[@id='scrollUp']")
+    static WebElement clickScrollUpButton;
+
+    By scrollUpLabel = By.xpath("//div[@class='item active']//div[@class='col-sm-6']//h2[contains(text(),'Full-Fledged practice website for Automation Engin')]");
+
     // VERIFY SUBSCRIPTION IN HOME PAGE TEST STEP
     public boolean verifyLandingPage(){
         return isElementDisplayed(landingPageImg);
@@ -170,6 +175,24 @@ public class HomePage extends TestBase {
         click(viewCart);
     }
 
+    //  SCROLL UP USING 'ARROW' BUTTON AND SCROLL DOWN FUNCTIONALITY
+    public void clickScrollUpButton(){
+        click(clickScrollUpButton);
+    }
+
+    public String verifyLabelWhenScrollUp(){
+        WebElement getLabel = visibilityOfElementLocated(scrollUpLabel);
+
+        assert  getLabel != null;
+        return getLabel.getText();
+    }
+
+    public void scrollToTopOfAPage() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth'});", landingPageImg);
+    }
+
+
     // ROUGH (METHOD HELPER)
     public static String capitalizeFirstLetter(String str) {
         if (str == null || str.isEmpty()) {
@@ -188,4 +211,5 @@ public class HomePage extends TestBase {
         }
         return capitalizedStr.toString().trim(); // Trim trailing space
     }
+
 }
