@@ -1,5 +1,7 @@
 package com.base;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -12,10 +14,15 @@ import java.util.Objects;
 
 public class TestBase extends DriverManager{
 
+    public static Logger log = LogManager.getLogger();
+
     public static boolean isElementPresent(WebElement element) {
         try {
-            return element != null && element.isDisplayed();
+            log.info("{} element is present", element.toString());
+
+            return element.isDisplayed();
         } catch (NoSuchElementException | StaleElementReferenceException e) {
+            log.error("{}", e.getMessage());
             return false;
         }
     }
@@ -24,8 +31,11 @@ public class TestBase extends DriverManager{
         try {
             wait = new WebDriverWait(driver, Duration.ofSeconds(Integer.parseInt(setUp.getProperty("explicit.wait"))));
             wait.until(ExpectedConditions.visibilityOf(element));
+
+            log.info("{} element is displayed", element.toString());
             return element.isDisplayed();
         } catch (NoSuchElementException | TimeoutException | StaleElementReferenceException e) {
+            log.error("Element not valid {}", e.getMessage());
             return false;
         }
     }
@@ -33,13 +43,15 @@ public class TestBase extends DriverManager{
     public static String getElementText(WebElement element){
         if (element != null && isElementPresent(element)) {
             try {
+                log.info("{} element is valid", element.toString());
+
                 return element.getText();
             } catch (StaleElementReferenceException e) {
-                System.out.println("Element not valid: " + e.getMessage());
+                log.error("{} element is not valid", element.toString());
                 return "";
             }
         } else {
-            System.out.println("Element not found or null.");
+            log.error("{} element not found or null", element);
             return "";
         }
     }
@@ -49,11 +61,12 @@ public class TestBase extends DriverManager{
             try {
                 element.clear();
                 element.sendKeys(value);
+                log.info("{} element is valid - entered value {}", element.toString(), value);
             } catch (StaleElementReferenceException e) {
-                System.out.println("Element not valid: " + e.getMessage());
+                log.error("Element not valid: {}", e.getMessage());
             }
         } else {
-            System.out.println("Element not found or null.");
+            log.error("{} not found", element);
         }
     }
 
@@ -66,33 +79,35 @@ public class TestBase extends DriverManager{
                     wait = new WebDriverWait(driver, Duration.ofSeconds(Integer.parseInt(setUp.getProperty("explicit.wait"))));
                     wait.until(ExpectedConditions.elementToBeClickable(element));
                     element.click();
+                    log.info("Element {} has been clicked", element.toString());
                     return; // if success, exit from method
                 } catch (StaleElementReferenceException e) {
-                    System.out.println("Element is stale, retrying... Attempt: " + (attempts + 1));
+                    log.info("Element is stale, retrying... Attempt: {}", attempts + 1);
                 } catch (Exception e) {
-                    System.out.println("Failed to click the element: " + e.getMessage());
+                    log.error("Failed to click the element: {}", e.getMessage());
                     return;
                 }
                 attempts++;
             }
         } else {
-            System.out.println("Element not found or null.");
+            log.error("Element not found or null");
         }
     }
 
     public static void selectRadioButton(WebElement radioButton) {
         click(radioButton);
+        log.info("{} is selected", radioButton.toString());
     }
 
     public static void selectDropdown(WebElement dropDownLocator, String value) {
         try {
             Select select = new Select(dropDownLocator);
             select.selectByVisibleText(value);
-            System.out.println("Selected: " + value);
+            log.info("{} element is selected with {}", dropDownLocator, value);
         } catch (NoSuchElementException e) {
-            System.out.println("Option '" + value + "' not found in the dropdown.");
+            log.error("Option '{}' not found in the dropdown", value);
         } catch (Exception e) {
-            System.out.println("Failed to select value: " + e.getMessage());
+            log.error("Failed to select value: {}", e.getMessage());
         }
     }
 
@@ -100,10 +115,10 @@ public class TestBase extends DriverManager{
         try {
             wait = new WebDriverWait(driver, Duration.ofSeconds(Integer.parseInt(setUp.getProperty("explicit.wait"))));
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-            System.out.println("✔ Element is visible: " + locator);
+            log.info("{} element is visible", locator);
             return element;
         } catch (TimeoutException e) {
-            System.out.println("❌ Timeout: Element not visible within the specified time: " + locator);
+            log.error("Timeout: {} element not visible within the specified time", locator);
             return null;
         }
     }
@@ -111,12 +126,14 @@ public class TestBase extends DriverManager{
     public static List<WebElement> findElements(WebDriver driver, By locator) {
         List<WebElement> elements = driver.findElements(locator);
         if (elements.isEmpty()) {
-            System.out.println("Element not found: " + locator);
+            log.error("{} element is empty", locator);
         }
+        log.info("{} element is found", locator);
         return elements;
     }
 
     public static WebElement findElement(WebDriver driver, By locator){
+        log.info("{} element has been found ", locator);
         return driver.findElement(locator);
     }
 

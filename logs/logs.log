@@ -1,0 +1,51 @@
+[INFO ] 2025-03-14 21:44:18.242 [main] DriverManager - setUp.properties file has been found
+[INFO ] 2025-03-14 21:44:18.243 [main] DriverManager - setUp.properties file has been loaded
+[INFO ] 2025-03-14 21:44:19.349 [main] DriverManager - chrome browser has been selected
+[INFO ] 2025-03-14 21:44:22.755 [main] TestBase - Element [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //a[contains(text(),'Signup / Login')]] has been clicked
+[INFO ] 2025-03-14 21:44:22.794 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> css selector: div[class='signup-form'] h2] element is displayed
+[INFO ] 2025-03-14 21:44:22.811 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> css selector: div[class='signup-form'] h2] element is present
+[INFO ] 2025-03-14 21:44:22.832 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> css selector: div[class='signup-form'] h2] element is valid
+[INFO ] 2025-03-14 21:44:22.856 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //form[@action='/signup']/input[@placeholder='Name']] element is present
+[INFO ] 2025-03-14 21:44:22.966 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //form[@action='/signup']/input[@placeholder='Name']] element is valid - entered value Rodrigo Mosciski
+[INFO ] 2025-03-14 21:44:22.974 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //form[@action='/signup']//input[@type='email']] element is present
+[INFO ] 2025-03-14 21:44:23.090 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //form[@action='/signup']//input[@type='email']] element is valid - entered value mahalia.emard@yahoo.com
+[INFO ] 2025-03-14 21:44:29.158 [main] TestBase - Element Proxy element for: DefaultElementLocator 'By.xpath: //button[contains(text(),'Signup')]' has been clicked
+[INFO ] 2025-03-14 21:44:29.189 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //b[contains(text(),'Enter Account Information')]] element is displayed
+[INFO ] 2025-03-14 21:44:29.220 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //b[contains(text(),'Enter Account Information')]] element is present
+[INFO ] 2025-03-14 21:44:29.252 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //b[contains(text(),'Enter Account Information')]] element is valid
+[INFO ] 2025-03-14 21:44:29.442 [main] TestBase - Element [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> id: id_gender2] has been clicked
+[INFO ] 2025-03-14 21:44:29.455 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> id: id_gender2] is selected
+[INFO ] 2025-03-14 21:44:29.471 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //input[@id='password']] element is present
+[INFO ] 2025-03-14 21:44:29.675 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //input[@id='password']] element is valid - entered value kz54et5is38r18ga
+[INFO ] 2025-03-14 21:44:29.840 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //select[@id='days']] element is selected with 6
+[INFO ] 2025-03-14 21:44:29.998 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //select[@id='months']] element is selected with June
+[INFO ] 2025-03-14 21:44:30.122 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //select[@id='years']] element is selected with 1959
+[INFO ] 2025-03-14 21:44:30.246 [main] TestBase - Element [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> css selector: #newsletter] has been clicked
+[INFO ] 2025-03-14 21:44:30.389 [main] TestBase - Element [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> css selector: #optin] has been clicked
+[INFO ] 2025-03-14 21:44:30.403 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //input[@id='first_name']] element is present
+[INFO ] 2025-03-14 21:44:30.595 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //input[@id='first_name']] element is valid - entered value Roger
+[INFO ] 2025-03-14 21:44:30.610 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> css selector: #last_name] element is present
+[INFO ] 2025-03-14 21:44:30.770 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> css selector: #last_name] element is valid - entered value Boehm
+[INFO ] 2025-03-14 21:44:30.783 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> css selector: #company] element is present
+[INFO ] 2025-03-14 21:44:31.028 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> css selector: #company] element is valid - entered value Friesen, McKenzie and Mosciski
+[INFO ] 2025-03-14 21:44:31.044 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> css selector: #address1] element is present
+[INFO ] 2025-03-14 21:44:31.269 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> css selector: #address1] element is valid - entered value 79024 Buster Fort
+[INFO ] 2025-03-14 21:44:31.283 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> css selector: #address2] element is present
+[INFO ] 2025-03-14 21:44:31.452 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> css selector: #address2] element is valid - entered value 0872
+[INFO ] 2025-03-14 21:44:31.594 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //select[@id='country']] element is selected with Singapore
+[INFO ] 2025-03-14 21:44:31.603 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //input[@id='state']] element is present
+[INFO ] 2025-03-14 21:44:31.712 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //input[@id='state']] element is valid - entered value Idaho
+[INFO ] 2025-03-14 21:44:31.723 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //input[@id='city']] element is present
+[INFO ] 2025-03-14 21:44:31.865 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //input[@id='city']] element is valid - entered value Port Santo
+[INFO ] 2025-03-14 21:44:31.879 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //input[@id='zipcode']] element is present
+[INFO ] 2025-03-14 21:44:32.045 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //input[@id='zipcode']] element is valid - entered value 79343
+[INFO ] 2025-03-14 21:44:32.057 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> css selector: #mobile_number] element is present
+[INFO ] 2025-03-14 21:44:32.206 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> css selector: #mobile_number] element is valid - entered value (505) 635-8136
+[INFO ] 2025-03-14 21:44:39.142 [main] TestBase - Element Proxy element for: DefaultElementLocator 'By.xpath: //button[contains(text(),'Create Account')]' has been clicked
+[INFO ] 2025-03-14 21:44:39.179 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //b[contains(text(),'Account Created!')]] element is displayed
+[INFO ] 2025-03-14 21:44:39.199 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //b[contains(text(),'Account Created!')]] element is present
+[INFO ] 2025-03-14 21:44:39.217 [main] TestBase - [[ChromeDriver: chrome on windows (a3e94eda0f36e4090345065f83e2aa8b)] -> xpath: //b[contains(text(),'Account Created!')]] element is valid
+[INFO ] 2025-03-14 21:44:47.714 [main] TestBase - Element Proxy element for: DefaultElementLocator 'By.xpath: //a[@class='btn btn-primary']' has been clicked
+[INFO ] 2025-03-14 21:44:47.734 [main] TestBase - By.xpath: //b[contains(text(), 'Rodrigo Mosciski')] element is visible
+[INFO ] 2025-03-14 21:44:54.377 [main] TestBase - Element Proxy element for: DefaultElementLocator 'By.xpath: //a[contains(text(),'Delete Account')]' has been clicked
+[INFO ] 2025-03-14 21:44:54.697 [main] DriverManager - Browser closed

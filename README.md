@@ -23,6 +23,8 @@ by implementing Page Object Model and Page Factory Design Pattern.
 
 ## Project Structure
 ```
+logs/                                  # Log files generated during execution
+│
 src/
 ├── main/
 │   ├── java/
@@ -30,8 +32,7 @@ src/
 │   │            ├── base/             # Base class for WebDriver setup and test configuration
 │   │            └── pages/            # Page Object Model (POM) for each application page
 │   ├── resources/
-│   │     ├── config/                  # Configuration files like setUp.properties
-│   │     └── logs/                    # Log files generated during execution
+│   │     └──  config/                 # Configuration files like setUp.properties
 │   │       
 ├── test/
 │   ├── java/
