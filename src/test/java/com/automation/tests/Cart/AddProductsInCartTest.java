@@ -11,6 +11,7 @@ import java.util.Random;
 
 import static com.base.DriverManager.*;
 
+
 public class AddProductsInCartTest {
     CartPage cartPage;
     ProductsPage productsPage;
@@ -66,9 +67,7 @@ public class AddProductsInCartTest {
         cartPage.verifyAddedProductInCartIsVisible(addedProductInCart);
 
         cartPage.verifyPriceQuantityTotalProduct();
-
     }
-
 
     @AfterMethod
     public void quit(){

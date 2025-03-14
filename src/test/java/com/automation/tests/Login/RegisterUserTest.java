@@ -35,16 +35,16 @@ public class RegisterUserTest {
         Assert.assertEquals(actualAccountInformation, "ENTER ACCOUNT INFORMATION");
 
         loginPage.fillAccountInformation(Constant.TITLE,
-                                         Constant.PASSWORD,
-                                         Constant.DATE,
-                                         Constant.MONTH,
-                                         Constant.YEAR);
+                Constant.PASSWORD,
+                Constant.DATE,
+                Constant.MONTH,
+                Constant.YEAR);
 
         loginPage.selectCheckbox();
 
         loginPage.fillAddressInformation(Constant.FIRST_NAME, Constant.LAST_NAME, Constant.COMPANY,
-                                         Constant.ADDRESS, Constant.ADDRESS2, Constant.COUNTRY,
-                                         Constant.STATE, Constant.CITY, Constant.ZIPCODE, Constant.MOBILE_NUMBER);
+                Constant.ADDRESS, Constant.ADDRESS2, Constant.COUNTRY,
+                Constant.STATE, Constant.CITY, Constant.ZIPCODE, Constant.MOBILE_NUMBER);
 
         loginPage.createAccountButton();
 

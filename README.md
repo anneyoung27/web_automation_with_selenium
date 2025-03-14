@@ -11,17 +11,15 @@ by implementing Page Object Model and Page Factory Design Pattern.
 - TestNG for test execution
 - Maven for dependency management
 - Console logging and reporting capabilities
-- Extent Reports for test reporting
 - POM and Page Factory Design for code reusability and easy maintenance
 - Cross-browser testing support using WebDriver
-- Enhanced logging using Log4j2
 
 ## Technologies
 - Java 21
 - Apache Maven
 - Selenium
 - TestNG Framework
-- Extent Report
+- Log4j2
 
 ## Project Structure
 ```
@@ -30,9 +28,7 @@ src/
 │   ├── java/
 │   │     └──── com/
 │   │            ├── base/             # Base class for WebDriver setup and test configuration
-│   │            ├── pages/            # Page Object Model (POM) for each application page
-│   │            └── reportManager/    # Automated report management using Extent Reports
-│   ├── reports/                       # Folder where the test execution report is stored
+│   │            └── pages/            # Page Object Model (POM) for each application page
 │   ├── resources/
 │   │     ├── config/                  # Configuration files like setUp.properties
 │   │     └── logs/                    # Log files generated during execution
@@ -45,8 +41,7 @@ src/
 │   │                ├── tests/        # Main test case implementation
 │   │                └── utils/        # Utility classes for test data and helpers
 │   └── resources/
-│       ├── files/                     # Test data
-│       └── runner/                    # Runner class to execute the test suite
+│       └── files/                     # Test data
 └── pom.xml                            # Maven configuration
 ```
 
@@ -88,11 +83,6 @@ The UI tests cover the functionality of the website, focusing on key features su
     - Place order register while checkout
     - Place order login before checkout
 
-### 3. Viewing the reports
-The test reports can be found in:<br />
-```src/main/reports```<br />
-The report will be generated upon execution and will include screenshots if any failures occur during the testing process.
-
 ## Installation
 1. Clone this repository:<br />
    `git clone https://github.com/anneyoung27/web_automation_with_selenium.git`
@@ -104,4 +94,4 @@ The report will be generated upon execution and will include screenshots if any 
    `mvn clean install`
 
 4. Run<br />
-   `src/test/resources/runner`
+   `src/test/java/com/automation/tests`
