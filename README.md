@@ -10,9 +10,11 @@ by implementing Page Object Model and Page Factory Design Pattern.
 ## Key Features
 - TestNG for test execution
 - Maven for dependency management
-- Console logging and reporting capabilities
+- Write log to file
+- Read config from properties file
+- Base function in the package: utils
+- Use DataFaker to generate data
 - POM and Page Factory Design for code reusability and easy maintenance
-- Cross-browser testing support using WebDriver
 
 ## Technologies
 - Java 21
